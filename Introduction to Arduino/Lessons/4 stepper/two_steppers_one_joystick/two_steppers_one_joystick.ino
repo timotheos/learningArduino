@@ -46,11 +46,11 @@ void loop() {
 
   if (position_1 > backwardTrigger and digitalRead(2) == HIGH) {
     speed_1 = map(position_1, backwardTrigger, backwardLimit, 0, speed_max);
+    direction_1 = -1;
   }
 
   if (position_1 < forwardTrigger and digitalRead(3) == HIGH) {
     speed_1 = map(position_1, forwardLimit, forwardTrigger, speed_max, 0);
-    direction_1 = -1;
   }
 
   if (speed_1 > 0) {
@@ -58,7 +58,7 @@ void loop() {
     motor1.step(direction_1);
   }
 
-  // MOTOR 2 CONTROL
+  // MOTOR 2 CONTROL X
   int speed_2 = 0;
   int direction_2 = 1;
   int position_2 = analogRead(2);
@@ -69,11 +69,11 @@ void loop() {
 
   if (position_2 > rightTrigger and digitalRead(4) == HIGH) {
     speed_2 = map(position_2, rightTrigger, rightLimit, 0, speed_max);
-    direction_2 = -1;
   }
 
   if (position_2 < leftTrigger and digitalRead(5) == HIGH) {
     speed_2 = map(position_2, leftLimit, leftTrigger, speed_max, 0);
+    direction_2 = -1;
   }
 
   if (speed_2 > 0) {
