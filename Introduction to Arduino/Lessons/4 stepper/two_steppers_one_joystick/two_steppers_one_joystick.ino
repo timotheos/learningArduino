@@ -1,15 +1,15 @@
 /*
-Dual Stepper Motor Control (Arduino UNO R3)
-Controls the speed and direction of two stepper motors
-via two analog inputs. Used to achieve two-dimensional
-movement controlled by a joystick. End-of-track sensors
-prevent damage to the structure and motors.
-Based on "Speed Control" example of the Stepper lib.
-Please note the Stepper library produces a bipolar sequence.
-By swapping the two middle cables, a unipolar seq. is obtained.
-By Eduardo Rivas, David Escobar y Ángel Moreno
-for Universidad Don Bosco of El Salvador, 2013.
- */
+  Dual Stepper Motor Control (Arduino UNO R3)
+  Controls the speed and direction of two stepper motors
+  via two analog inputs. Used to achieve two-dimensional
+  movement controlled by a joystick. End-of-track sensors
+  prevent damage to the structure and motors.
+  Based on "Speed Control" example of the Stepper lib.
+  Please note the Stepper library produces a bipolar sequence.
+  By swapping the two middle cables, a unipolar seq. is obtained.
+  By Eduardo Rivas, David Escobar y Ángel Moreno
+  for Universidad Don Bosco of El Salvador, 2013.
+*/
 
 #include <Stepper.h>
 
@@ -17,13 +17,13 @@ for Universidad Don Bosco of El Salvador, 2013.
 const int PPR = 200;
 
 // Motor Y in pins 10-13
-Stepper motor1(PPR, 10,11,12,13);
+Stepper motor1(PPR, 30, 31, 32, 33);
 // Motor X in pins 6-9
-Stepper motor2(PPR, 6,7,8,9);
+Stepper motor2(PPR, 24, 25, 26, 27);
 
 void setup() {
   // Pins 2-5 set up as inputs with pullup resistors. Sensors are active-low.
-  for (int i = 2; i <= 5; i++)
+  for (int i = 2; i <= 3; i++)
   {
     pinMode(i, INPUT_PULLUP);
   }
@@ -36,7 +36,7 @@ void loop() {
   int speed_1 = 0;
   int direction_1 = 1;
   // Get joystick position on A1
-  int position_1 = analogRead(1);
+  int position_1 = analogRead(6);
   // joystick trigger positions
   int forwardLimit = 1, forwardTrigger = 20;
   // idle_1 = 38;
@@ -61,7 +61,7 @@ void loop() {
   // MOTOR 2 CONTROL X
   int speed_2 = 0;
   int direction_2 = 1;
-  int position_2 = analogRead(2);
+  int position_2 = analogRead(7);
   int leftLimit = 0, leftTrigger = 462;
   // idle_2 = 521;
   int rightTrigger = 562, rightLimit = 1023;
